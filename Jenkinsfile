@@ -31,7 +31,7 @@ pipeline{
              IMAGE_NAME=${DOCKER_CREDS_USR}/flask-app:v1
 
               ssh -o StrictHostKeyChecking=no ubuntu@16.171.41.203 \
-              'docker pull ${IMAGE_NAME}/flask-app:v1 &&
+              'docker pull ${IMAGE_NAME} &&
               docker stop flask-app || true &&
               docker rm flask-app || true &&
               docker run -d -p 5000:5000 --name flask-app ${IMAGE_NAME}' 
