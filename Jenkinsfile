@@ -28,6 +28,8 @@ pipeline{
             steps{
                 sshagent (['ec2-key']){
               sh '''
+             IMAGE_NAME=${DOCKER_CREDS_USR}/flask-app:v1
+
               ssh -o StrictHostKeyChecking=no ubuntu@16.171.41.203 \
               'docker pull $DOCKER_CREDS_USR/flask-app:v1 &&
               docker stop flask-app || true &&
