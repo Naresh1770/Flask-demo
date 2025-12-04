@@ -27,7 +27,7 @@ pipeline{
         stage('Deploy to EC2 '){
             steps{
               sh '''
-              ssh -o StrictHostKeyChecking=no ubuntu@ec2-51-20-98-3 \
+              ssh -o StrictHostKeyChecking=no ubuntu@51.20.98.3 \
               'docker pull $DOCKER_CREDS_USR/flask-app:v1 &&
               docker stop flask-app || true &&
               docker rm flask-app || true &&
