@@ -26,6 +26,7 @@ pipeline{
         }
         stage('Deploy to EC2 '){
             steps{
+                sshagent (['ec2-key']){
               sh '''
               ssh -o StrictHostKeyChecking=no ubuntu@51.20.98.3 \
               'docker pull $DOCKER_CREDS_USR/flask-app:v1 &&
@@ -33,6 +34,7 @@ pipeline{
               docker rm flask-app || true &&
               docker run -d -p 5000:5000 --name flask-app $DOCKER_CREDS_USR/flask-app:v1' 
               '''
+           }
             }
      }
 }
